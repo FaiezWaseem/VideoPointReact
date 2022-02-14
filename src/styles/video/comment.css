@@ -1,0 +1,19 @@
+.video_recieved_comment {
+    display: flex;
+    align-items: center;
+    margin: 10px;
+}
+.comment_logo {
+    display: flex;
+    justify-content: flex-start;
+}
+.video_recieved_comment .comment_details {
+    margin-left: 20px;
+}
+.video_recieved_comment .comment_details .commenter {
+    display: flex;
+    align-items: center;
+}
+.video_recieved_comment .comment_details .commenter p {
+    margin: 0;
+}

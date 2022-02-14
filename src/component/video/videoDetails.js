@@ -13,9 +13,9 @@ export default function VideoDetail() {
       likes : "3",
       date : "3/4/21"
     })
+   const [isVisible , setVisible] = React.useState(false); 
 
-  const useQuery = () => new URLSearchParams(useLocation().search);
-     const query = useQuery();
+     const query = new URLSearchParams(useLocation().search);
     const postId = query.get('e');
     React.useEffect(()=>{
       //Loading Video Details
@@ -69,8 +69,11 @@ export default function VideoDetail() {
             <h4 id="username">{videoInfo.uploader}</h4>
          </div>
          <div className="vid__des">
-           <button id="Description"><p><i className="material-icons">add_circle</i></p>Description </button>
-           <p id="des" style={{ display : "none"}}>{videoInfo.description}</p>
+           <button id="Description"  onClick={()=> setVisible(!isVisible)}   ><p><i className="material-icons"  >add_circle</i></p>Description </button>
+          {
+            isVisible ? <p id="des">{videoInfo.description}</p> : <></>
+          }
+           
          </div>
       </div>
            

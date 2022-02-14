@@ -3,6 +3,7 @@ import MainHeader from '../component/home/MainHeader'
 import VideoApp from '../component/video/VideoApp'
 import RecommendationVideo from "../component/video/RecommendationVideo"
 import VideoDetail from "../component/video/videoDetails"
+import Comment from "../component/video/Comment"
 import "../styles/video/main.css"
 import "../styles/video/player.css"
 import database from "../Backend/Fire"
@@ -10,6 +11,7 @@ import { useLocation } from 'react-router-dom';
 
 export default function Watch(){
   const [recommendedVideos , setRecommendationVideos] = React.useState([]);
+  const [comments , setComments] = React.useState([]);
   const [id_here , setVideoKey] = React.useState("");
   const useQuery = () => new URLSearchParams(useLocation().search);
      const query = useQuery();
@@ -30,6 +32,15 @@ export default function Watch(){
               ]
             })
             })
+            setComments([])
+            database.on("commentDB/"+postId , (snap)=>{
+              setComments(  item => {
+                return [
+                  snap.val(),
+                  ...item
+                ]
+              })
+            })
      },[postId])
 
 
@@ -40,6 +51,10 @@ export default function Watch(){
            <div  className='item1'>
            <VideoApp  src={`https://www.googleapis.com/drive/v3/files/${id_here}?alt=media&key=AIzaSyCNRerZNkFQS4NMgupkvqpuvq-wdTQWm9E`} poster={"https://drive.google.com/thumbnail?id="+id_here}/>
            <VideoDetail />
+           {
+             comments.map((item => <Comment  item={item}  key={item.key}/> ))
+           }
+          
            </div>
            <div  className='item2'>
              {

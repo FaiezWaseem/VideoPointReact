@@ -20,7 +20,7 @@
 
 
 /* Video Card */
-[data-theme="dark"] .dark-card-text , [data-theme="dark"] .video span{
+[data-theme="dark"] .dark-card-text , [data-theme="dark"] .video span , [data-theme="dark"]  #vid_title ,  [data-theme="dark"]  #views , [data-theme="dark"]  #date ,[data-theme="dark"]  #username ,[data-theme="dark"] .vid_extra  ,[data-theme="dark"] #click_Comment ,[data-theme="dark"] #Description ,[data-theme="dark"]    .v-details ,[data-theme="dark"]   .comment_details {
 color: rgba(255, 255, 255, 0.7) !important;
 }
 [data-theme="dark"] .dark-card {
