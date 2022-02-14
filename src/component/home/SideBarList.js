@@ -10,6 +10,7 @@ import ExpandMore from '@mui/icons-material/ExpandMore';
 import StarBorder from '@mui/icons-material/StarBorder';
 import Icon from '@mui/material/Icon';
 import {useNavigate} from 'react-router-dom';
+import database from "../../Backend/Fire"
 
 export default function SideBarList({setCallback}) {
   const history = useNavigate();
@@ -17,6 +18,18 @@ export default function SideBarList({setCallback}) {
   const [ isHome , setActiveHome] = React.useState(true)
   const [ istrend , setActiveTrend] = React.useState(false)
   const [ isMyvideo , setActiveMyVideo] = React.useState(false)
+  const [isLogin  , setLogin] = React.useState(false);
+
+  React.useEffect(()=>{
+    database.isAuthenticated((user)=>{
+      if(user){
+        setLogin(true)
+      }else{
+        setLogin(false)
+      }
+    })
+  },[])
+
 
 function HandleSideBar (prop){
     if (prop ===  'home'){
@@ -116,12 +129,20 @@ function HandleSideBar (prop){
           </ListItemButton>
         </List>
       </Collapse>
-      <ListItemButton  onClick={()=> {history('/Authentication/signin/')}}>
+      {
+        !isLogin ?      <ListItemButton  onClick={()=> {history('/Authentication/signin/')}}>
         <ListItemIcon>
         <Icon>logout</Icon>
         </ListItemIcon>
         <ListItemText primary="SignIn" />
+      </ListItemButton> : <ListItemButton  onClick={()=> {database.signOut()}}>
+        <ListItemIcon>
+        <Icon>logout</Icon>
+        </ListItemIcon>
+        <ListItemText primary="SignOut" />
       </ListItemButton>
+      }
+ 
     </List>
   );
 }

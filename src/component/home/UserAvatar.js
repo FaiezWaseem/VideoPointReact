@@ -10,24 +10,36 @@ import Tooltip from '@mui/material/Tooltip';
 import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
-
+import database from "../../Backend/Fire"
 
 
 
 
 export default function AccountMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [user, setUser] = React.useState({
+    name : "F",
+    profile : "null"
+  });
   const open = Boolean(anchorEl);
+React.useEffect(()=>{
+  database.once("users/"+database.getUid() , (snap)=>{
+    setUser({
+      name : snap.val().name,
+      profile : snap.val().profile
+    })
+  })
+},[])
+
+  
   const [on , setOn] = React.useState(false);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
-  window.addEventListener("load", (function() {
-    if (on) {
-        initTheme();
-    }
-}
-));
+React.useEffect(()=>{
+  initTheme();
+},[on])
+
 function initTheme() {
     var darkThemeSelected = localStorage.getItem("darkSwitch") !== null && localStorage.getItem("darkSwitch") === "dark";
     darkThemeSelected ? document.body.setAttribute("data-theme", "dark") : document.body.removeAttribute("data-theme")
@@ -46,7 +58,6 @@ function resetTheme(val) {
     setOn(!on)
     resetTheme(on)
   }
-
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -55,7 +66,7 @@ function resetTheme(val) {
       <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
         <Tooltip title="Account settings">
           <IconButton onClick={handleClick} size="small" sx={{ ml: 2 }}>
-            <Avatar sx={{ width: 32, height: 32 }}>F</Avatar>
+            <Avatar sx={{ width: 32, height: 32 }}>{user.name.charAt(0)}</Avatar>
           </IconButton>
         </Tooltip>
       </Box>
@@ -94,7 +105,8 @@ function resetTheme(val) {
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
         <MenuItem>
-          <Avatar /> Profile
+         <img  src={user.profile}  style={{ width : 40 , height : 40 , borderRadius : 50 , marginRight : 8}} />
+          {user.name}
         </MenuItem>
         <MenuItem>
           <Avatar /> My account

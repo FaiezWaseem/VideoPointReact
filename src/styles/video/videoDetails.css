@@ -1,0 +1,116 @@
+.vid__details , .vid_uploader{
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid rgba(1,1,0,0.2);
+  }
+  .vid__details .vid__title_box{
+    margin: 20px 0px 10px 10px;
+  }
+  .vid__details .vid__data_box{
+    margin: 5px 10px 5px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .vid__details .vid__data_box .vid-meta-data span{
+    margin: 0px 10px;
+  }
+  .vid__details .vid__data_box  .vid_extra{
+    display: flex;
+    align-items: center;
+  }
+  .vid__details .vid__data_box  .vid_extra i{
+  margin-left: 10px;
+  }
+  .vid_uploader{
+    margin: 10px 0px;
+  }
+  .vid_uploader .vid__des{
+    margin: 10px 0px;
+  }
+  .vid_uploader .userprofile h4{
+    margin: 0px 10px;
+  }
+  .vid_uploader .userprofile{
+    display: flex;
+    align-items: center;
+  }
+  .vid_uploader .userprofile img , .vid__comment .write__comment img{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-left: 5px;
+  }
+  .comment_logo{
+    display: flex;
+    justify-content: flex-start;
+  }
+  .vid__comment .write__comment{
+    display: flex;
+    align-items: center;
+  }
+  .vid__comment .write__comment #comment{
+    border: 0px;
+    margin-left: 20px;
+    border-bottom: 1px solid rgba(1,1,1,0.2);
+    width: 100%;
+    background: transparent;
+  }
+  .vid__comment .write__comment #comment:focus{
+    outline: none;
+    border-bottom: 2px solid rgba(1,1,1,1);
+  }
+  #comment_send{
+    cursor: pointer;
+    font-size: 2rem;
+    margin: 5px;
+  }
+  .vid__comments h2{
+    margin: 10px;
+  }
+  .video_recieved_comment{
+    display: flex;
+    align-items: center;
+    margin: 10px;
+  }
+  .video_recieved_comment  .comment_details{
+    margin-left: 20px;
+  }
+  .video_recieved_comment  .comment_details .commenter{
+    display: flex;
+    align-items: center;
+  }
+  .video_recieved_comment  .comment_details .commenter h5{
+    margin: 0px 5px;
+  }
+  .item2 {
+    flex-grow: 4;
+    height: auto;
+    width: 400px;
+  }
+
+  .dropdown {
+    position: relative;
+    display: inline-block;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgb(0 0 0 / 20%);
+    z-index: 1;
+}
+#Description {
+    all: unset;
+    color: #000;
+    font-size: 1.1rem;
+    margin-left: 25px;
+    display: flex;
+}
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}

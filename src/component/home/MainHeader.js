@@ -4,10 +4,20 @@ import Button from '@mui/material/Button';
 import Icon from '@mui/material/Icon';
 import AccountMenu from './UserAvatar'
 import {useNavigate} from 'react-router-dom';
+import database from "../../Backend/Fire"
 
 export default function MainHeader() {
     const history = useNavigate()
-const [isLogin , setLogin]  = React.useState(true);
+const [isLogin , setLogin]  = React.useState(false);
+React.useEffect(()=>{
+    database.isAuthenticated((user)=>{
+        if(user){
+            setLogin(true)
+        }else{
+           setLogin(false)
+        }
+    })
+},[])
 
     return (
       <>

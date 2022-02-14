@@ -1,8 +1,36 @@
 import * as React from 'react'
 import '../../styles/Auth/sigin.css'
 import {useNavigate} from 'react-router-dom';
+import database from "../../Backend/Fire";
+
 export default function SignIn(){
     const history = useNavigate();
+    const [user , setUser] = React.useState({ email : "" , pass : ""})
+
+  React.useEffect(()=>{ 
+    database.isAuthenticated((user)=>{
+      if(user){
+        history("/")
+      }
+    })
+  },[])
+
+    const userData = (e) => {
+      setUser( item =>{
+        return {
+          ...item,
+          [e.target.name]  :   e.target.value
+        }
+      })
+    }
+    const onPress = () =>{
+       if( user.email != "" && user.email.includes("@") && user.pass != ""){
+           database.signIn(user.email , user.pass);
+       }else{
+         alert("Please Input Correct information")
+       }
+    }
+
     return (
         <>
 <section class="vh-100">
@@ -17,14 +45,14 @@ export default function SignIn(){
                     {/* <!-- Email input --> */}
           <div class="form-outline mb-4">
             <input type="email" id="form3Example3" class="form-control form-control-lg"
-              placeholder="Enter a valid email address" />
+              placeholder="Enter a valid email address" name='email'  onChange={(value)=> userData(value)  } />
             <label class="form-label" for="form3Example3">Email address</label>
           </div>
 
          {/* password input */}
           <div class="form-outline mb-3">
             <input type="password" id="form3Example4" class="form-control form-control-lg"
-              placeholder="Enter password" />
+              placeholder="Enter password" name='pass' onChange={(value)=> userData(value)  } />
             <label class="form-label" for="form3Example4">Password</label>
           </div>
 
@@ -41,7 +69,7 @@ export default function SignIn(){
 
           <div class="text-center text-lg-start mt-4 pt-2">
             <button type="button" class="btn btn-primary btn-lg"
-              style={{paddingLeft : '2.5rem'  , paddingRight : '2.5rem'}}>Login</button>
+              style={{paddingLeft : '2.5rem'  , paddingRight : '2.5rem'}} onClick={onPress} >Login</button>
             <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a onClick={()=>{
                 history('/Authentication/signup/')
             }}
