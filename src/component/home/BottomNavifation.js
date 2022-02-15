@@ -28,10 +28,10 @@ export default function FixedBottomNavigation({setCallback}) {
             setCallback(newValue)
           }}
         >
-          <BottomNavigationAction label="Home"  style={{color : value == 0 ?  "#fa6165" : 'rgba(0, 0, 0, 0.6)' }} icon={<Icon  style={{color : value == 0 ?  "#fa6165" : 'rgba(0, 0, 0, 0.6)' }}>home</Icon>} />
-          <BottomNavigationAction label="Trend"  style={{color : value == 1 ?  "#fa6165" : 'rgba(0, 0, 0, 0.6)' }} icon={<Icon  style={{color : value == 1 ?  "#fa6165" : 'rgba(0, 0, 0, 0.6)' }}>local_fire_department</Icon>} />
-          <BottomNavigationAction label="Myvideos"  style={{color : value == 2 ?  "#fa6165" : 'rgba(0, 0, 0, 0.6)' }} icon={<Icon  style={{color : value == 2 ?  "#fa6165" : 'rgba(0, 0, 0, 0.6)' }}>subscriptions</Icon>} />
-          <BottomNavigationAction label="Explore"  style={{color : value == 3 ?  "#fa6165" : 'rgba(0, 0, 0, 0.6)' }} icon={<Icon  style={{color : value == 3 ?  "#fa6165" : 'rgba(0, 0, 0, 0.6)' }}>hub</Icon>} />
+          <BottomNavigationAction label="Home"  style={{color : value === 0 ?  "#fa6165" : 'rgba(0, 0, 0, 0.6)' }} icon={<Icon  style={{color : value === 0 ?  "#fa6165" : 'rgba(0, 0, 0, 0.6)' }}>home</Icon>} />
+          <BottomNavigationAction label="Trend"  style={{color : value === 1 ?  "#fa6165" : 'rgba(0, 0, 0, 0.6)' }} icon={<Icon  style={{color : value === 1 ?  "#fa6165" : 'rgba(0, 0, 0, 0.6)' }}>local_fire_department</Icon>} />
+          <BottomNavigationAction label="Myvideos"  style={{color : value === 2 ?  "#fa6165" : 'rgba(0, 0, 0, 0.6)' }} icon={<Icon  style={{color : value === 2 ?  "#fa6165" : 'rgba(0, 0, 0, 0.6)' }}>subscriptions</Icon>} />
+          <BottomNavigationAction label="Explore"  style={{color : value === 3 ?  "#fa6165" : 'rgba(0, 0, 0, 0.6)' }} icon={<Icon  style={{color : value === 3 ?  "#fa6165" : 'rgba(0, 0, 0, 0.6)' }}>hub</Icon>} />
         </BottomNavigation>
       </Paper>
     </Box>

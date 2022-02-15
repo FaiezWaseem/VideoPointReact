@@ -9,7 +9,7 @@ class database {
     getUid(){
       try{
         this.userid = firebase.auth().currentUser.uid
-    return this.userid ;
+       return this.userid ;
       }catch(err){
         return null;
       }

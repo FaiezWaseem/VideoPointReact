@@ -13,10 +13,10 @@ function App() {
     <div className="App">
      <Router>
         <Routes>
-          <Route path="/" exact element={<Home />} />
+          <Route index exact element={<Home />} />
         </Routes>
         <Routes>
-          <Route path="/watch" exact element={<Watch />} />
+          <Route path="/watch/:video_Key/" exact element={<Watch />} />
         </Routes>
         <Routes>
           <Route path="/Authentication/:userName/" exact element={<Auth />} />

@@ -127,7 +127,7 @@ function resetTheme(val) {
           </ListItemIcon>
           Settings
         </MenuItem>
-        <MenuItem>
+        <MenuItem  onClick={()=> database.signOut()}>
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>
