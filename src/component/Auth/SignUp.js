@@ -1,6 +1,41 @@
 import *as React from 'react'
-
+import database from "../../Backend/Fire"
+import {useNavigate} from 'react-router-dom';
 export default function SignUp(){
+  const [user , setUser] = React.useState({ email : "" , pass : "" , name : ""})
+  const history = useNavigate();
+  const userData = (e) => {
+    setUser( item =>{
+      return {
+        ...item,
+        [e.target.name]  :   e.target.value
+      }
+    })
+  }
+  const HandleClick = () =>{
+    if( user.email != "" && user.email.includes("@") && user.pass != ""){
+      if(user.name !== ""){
+          if(user.pass === user.passConfirm){
+               database.signUp(user.email , user.pass , (uid)=>{
+                 database.fset('users/'+uid , {
+                  "name": user.name,
+                  "email": user.email,
+                  "pass": user.pass,
+                  "uid": uid
+                })
+                
+              }) 
+              history("/")
+          }else{
+            alert("Password Does Not Match")
+          }
+      }else {
+        alert("Please Enter User Name")
+      }
+  }else{
+    alert("Please Input Correct information")
+  }
+  }
     return(
         <section class="vh-100" >
   <div class="container h-100">
@@ -18,7 +53,7 @@ export default function SignUp(){
                   <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
-                      <input type="text" id="form3Example1c" class="form-control" />
+                      <input type="text" name='name' id="form3Example1c" class="form-control" onChange={userData} />
                       <label class="form-label" for="form3Example1c">Your Name</label>
                     </div>
                   </div>
@@ -26,7 +61,7 @@ export default function SignUp(){
                   <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
-                      <input type="email" id="form3Example3c" class="form-control" />
+                      <input type="email" id="form3Example3c" name='email' class="form-control" onChange={userData} />
                       <label class="form-label" for="form3Example3c">Your Email</label>
                     </div>
                   </div>
@@ -34,7 +69,7 @@ export default function SignUp(){
                   <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
-                      <input type="password" id="form3Example4c" class="form-control" />
+                      <input type="password" id="form3Example4c" name='pass' class="form-control" onChange={userData} />
                       <label class="form-label" for="form3Example4c">Password</label>
                     </div>
                   </div>
@@ -42,7 +77,7 @@ export default function SignUp(){
                   <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-key fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
-                      <input type="password" id="form3Example4cd" class="form-control" />
+                      <input type="password" id="form3Example4cd" name='passConfirm' class="form-control" onChange={userData} />
                       <label class="form-label" for="form3Example4cd">Repeat your password</label>
                     </div>
                   </div>
@@ -51,7 +86,7 @@ export default function SignUp(){
                     <input
                       class="form-check-input me-2"
                       type="checkbox"
-                      value=""
+                      value="true"
                       id="form2Example3c"
                     />
                     <label class="form-check-label" for="form2Example3">
@@ -60,7 +95,7 @@ export default function SignUp(){
                   </div>
 
                   <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                    <button type="button" class="btn btn-primary btn-lg">Register</button>
+                    <button type="button" class="btn btn-primary btn-lg"  onClick={HandleClick} >Register</button>
                   </div>
 
                 </form>

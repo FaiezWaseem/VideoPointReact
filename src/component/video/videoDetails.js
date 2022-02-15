@@ -103,7 +103,7 @@ export default function VideoDetail() {
        database.fb('video/'+videoInfo.type+'/'+video_Key+'/liked/').child(fuserid).remove();
    }
    const onLikeClicked = () =>{
-    myLiked ? checkUnLiked() : checkLiked()
+    (database.getUid()) ?  myLiked ? checkUnLiked() : checkLiked() : alert("Need To Logged In")
    }
   return (
     <div>
